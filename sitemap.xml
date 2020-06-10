@@ -4,16 +4,66 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-06-10T18:31:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/about/</loc>
-    <lastmod>2020-06-10T18:31:05+02:00</lastmod>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/ctf/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/dailybugle/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hard/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/joomla/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/oscp-learning-path/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sqli/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sqlmap/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tryhackme/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/yum/</loc>
+    <lastmod>2020-06-10T21:19:10+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
     <lastmod>2020-06-10T18:31:05+02:00</lastmod>
   </url>
   
@@ -43,22 +93,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2020-06-10T18:31:05+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/security/</loc>
-    <lastmod>2020-06-10T18:31:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-06-10T18:31:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/tryhackme/</loc>
     <lastmod>2020-06-10T18:31:05+02:00</lastmod>
   </url>
   

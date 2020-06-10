@@ -9,7 +9,7 @@
     <description>Recent content in Tags on A flag with Somecookie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 18:31:05 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 21:19:10 +0200</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,9 +17,149 @@
     <item>
       <title>CTF</title>
       <link>/tags/ctf/</link>
-      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
       
       <guid>/tags/ctf/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>hard</title>
+      <link>/tags/hard/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/hard/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>joomla</title>
+      <link>/tags/joomla/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/joomla/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>OSCP-learning-path</title>
+      <link>/tags/oscp-learning-path/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/oscp-learning-path/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>sqli</title>
+      <link>/tags/sqli/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/sqli/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>sqlmap</title>
+      <link>/tags/sqlmap/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/sqlmap/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>tryHackMe</title>
+      <link>/tags/tryhackme/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/tryhackme/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>yum</title>
+      <link>/tags/yum/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/tags/yum/</guid>
       <description>
         
           
@@ -120,26 +260,6 @@
       <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
       
       <guid>/tags/security/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>tryHackMe</title>
-      <link>/tags/tryhackme/</link>
-      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
-      
-      <guid>/tags/tryhackme/</guid>
       <description>
         
           

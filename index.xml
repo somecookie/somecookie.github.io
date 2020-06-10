@@ -9,10 +9,29 @@
     <description>Recent content on A flag with Somecookie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 18:31:05 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 21:19:10 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DailyBugle</title>
+      <link>/posts/dailybugle/</link>
+      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      
+      <guid>/posts/dailybugle/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/dailyBugle/banner.png&#34;/&gt;
+          
+        
+        
+        
+          Daily Bugle - Compromise a Joomla CMS account via SQLi, practice cracking hashes and escalate your privileges by taking advantage of yum.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>About</title>
