@@ -208,18 +208,12 @@ available databases <span style="color:#f92672">[</span>5<span style="color:#f92
 <p>The password is not in plaintext! That would be too easy. It&rsquo;s hashed with <code>bcrypt</code>.
 Let&rsquo;s try to brute-force it with our friend <code>john</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo john -format<span style="color:#f92672">=</span>bcrypt --wordlist<span style="color:#f92672">=</span>/usr/share/wordlists/rockyou.txt hash.txt
-</code></pre></div><p>After a few long minutes we cracked the password! Ah yeah&hellip;<code>spiderman123</code>&hellip;how surprising&hellip;</p>
+</code></pre></div><p>After a few long minutes we cracked the password! Ah yeah&hellip;how surprising&hellip;</p>
 
   <img src="/img/dailyBugle/jonah.jpg"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
 
 
-<p>We have the credentials for the following user:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">id          811
-name        Super User
-email       jonah@tryhackme.com
-username    jonah
-password    spiderman123
-</code></pre></div><h2 id="the-super-template">The super template!</h2>
+<h2 id="the-super-template">The super template!</h2>
 <p>Since Jonah is the editor-in-chief, he is probably also admin of the website. Let&rsquo;s see if we can connect to the <code>Administrator</code> page we found in the <code>nmap</code> scan.</p>
 
   <img src="/img/dailyBugle/admin.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
