@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Dogcat :: A flag with Somecookie — CTF write-ups by Somecookie</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="I made a website where you can look at pictures of dogs and/or cats! Hello everyone! Today for my first write let&amp;rsquo;s pawn the box dogcat on TryHackMe! The difficulty of the box is medium. It took me a quite a lot of time to solve it but I learn a lot during the process! I had to first solve the LFI basics room to understand how to solve this one."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/dogcat/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dogcat"/>
+<meta name="twitter:description" content="Dogcat - I made a website where you can look at pictures of dogs and/or cats!"/>
+
+
+
+<meta property="og:title" content="Dogcat" />
+<meta property="og:description" content="Dogcat - I made a website where you can look at pictures of dogs and/or cats!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/dogcat/" />
+<meta property="article:published_time" content="2020-06-10T18:31:05+02:00" />
+<meta property="article:modified_time" content="2020-06-10T18:31:05+02:00" /><meta property="og:site_name" content="A flag with Somecookie" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="/posts/dogcat/">Dogcat</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-10
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Somecookie</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/php/">php</a>&nbsp;
+        
+          #<a href="/tags/lfi/">lfi</a>&nbsp;
+        
+          #<a href="/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="/tags/security/">security</a>&nbsp;
+        
+          #<a href="/tags/tryhackme/">tryHackMe</a>&nbsp;
+        
+          #<a href="/tags/ctf/">CTF</a>&nbsp;
+        
+          #<a href="/tags/medium/">medium</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/dogcat/banner.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      
+      <h2 id="i-made-a-website-where-you-can-look-at-pictures-of-dogs-andor-cats">I made a website where you can look at pictures of dogs and/or cats!</h2>
+<p>Hello everyone! Today for my first write let&rsquo;s pawn the box <a href="https://tryhackme.com/room/dogcat">dogcat</a> on TryHackMe! The difficulty of the box is medium. It took me a quite a lot of time to solve it but I learn a lot during the process! I had to first solve the <a href="https://tryhackme.com/room/lfibasics">LFI basics</a> room to understand how to solve this one. So let&rsquo;s dive into the challenge.</p>
+<h3 id="enumerate">Enumerate</h3>
+<p>As for most challenge I started by running nmap to find the services that can be used to access the server.</p>
+
+  <img src="/img/dogcat/nmap.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>SSH is open and a website is accessible!</p>
+<h3 id="lets-see-some-dogs-and-cats">Let&rsquo;s see some dogs and cats!</h3>
+<p>Let&rsquo;s see the website.</p>
+
+  <img src="/img/dogcat/index.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Ok&hellip;that&rsquo;s probably the website referred as the subtitle of the challenge&hellip;I want to see a cute dog let&rsquo;s click on the dog button!</p>
+
+  <img src="/img/dogcat/dog.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>What a beautiful dog&hellip;but&hellip;did you also notice something weird? The URL! It changed and we can pass something as the parameter view of the GET request! Let&rsquo;s change it to cat&hellip;yeah&hellip;an ugly cat appeared, let&rsquo;s not show that here&hellip; It smells like local file injection! Let&rsquo;s change view to index.php&hellip;nope only dogs or cats are allowed&hellip;</p>
+<p>After a few trials I found out that you can bypass that by&hellip;simply adding the word cat or dog in the url&hellip;but we still get an error and the a .php seems to be added to our input&hellip;</p>
+
+  <img src="/img/dogcat/error.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>On the bright side we learn that the php script that handles our request is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/var/www/html/index.php
+</code></pre></div><p>This php extension thingy is really annoying&hellip;It&rsquo;s google time! Let&rsquo;s see how we can bypass that. The answer is php filter! We can leverage that to see the source code of index.php!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">php://filter/convert.base64-encode/resource=index
+</code></pre></div><p>Gives us a base64 encoded string. Once decoded we have the source code!</p>
+
+  <img src="/img/dogcat/index_html.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Oh! we can use the ext parameter in the GET request to choose the extension! We can set it to the empty string and not be bothered by it anymore!</p>
+<h3 id="its-time-to-poison-the-log">It&rsquo;s time to poison the log!</h3>
+<p>That&rsquo;s the part that took me ages&hellip;not because it is difficult but because I had no idea you could do that! It&rsquo;s at this point that I did the LFI basics room and then it became much clearer for me&hellip;</p>
+<p>Basically we want to write something to the log of the apache server and then get the log hoping that this something gets executed! After a bit of googling and with the help of the nmap recognition we did earlier, we located the log at:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/var/log/apache2/access.log
+</code></pre></div>
+  <img src="/img/dogcat/log.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We notice that the user-agent (typically Mozilla/5.0) of the GET request is written to the log. We can leverage that to execute arbitrary code!</p>
+<p>You can use Burp to modify the user-agent in the request but I preferred to write a small python script for that&hellip;<a href="https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w">don&rsquo;t be a script kiddie</a>!</p>
+
+  <img src="/img/dogcat/lfi_py.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>The key is line 6. We set the user-agent to a php script that gets the cmd parameter of a get request and execute it. You can now call any system command through the cmd parameter and it gets executed! To check that everything is working let&rsquo;s run ls</p>
+
+  <img src="/img/dogcat/ls.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Do you also see it? It&rsquo;s the first flag ever found on this blog!</p>
+<h3 id="reverse-that-shell">Reverse that shell!</h3>
+<p>We can execute code, let&rsquo;s get a reverse shell! <a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">Pentest monkey</a> is your friend!. Let&rsquo;s open a listener with netcat and try the one-liner for the php reverse shell. After trying almost all one-liner I gave up, let&rsquo;s spawn an http server and download a <a href="http://pentestmonkey.net/tools/web-shells/perl-reverse-shell">perl reverse shell</a> from it.</p>
+
+  <img src="/img/dogcat/get_shell.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>I can now execute it through the cmd argument and get my shell!</p>
+<h3 id="go-root-or-go-home">Go root or go home!</h3>
+<p>Normally I would start with some enumeration with linpeas but sudo -l just gave us all we need!</p>
+
+  <img src="/img/dogcat/sudo.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We can execute env as root without password! We are one search on <a href="https://gtfobins.github.io/">GTFOBins</a> away from root! As expected we found everything we need and are now root!</p>
+
+  <img src="/img/dogcat/root.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We own the server, let&rsquo;s find the flags and burn the server to the ground!</p>
+
+  <img src="/img/dogcat/flags.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Wait&hellip;what&hellip;where is the 4th flag???!</p>
+<h3 id="get-away-from-docker">Get away from docker!</h3>
+<p>At this point I was lost! I had no idea what to do&hellip;until I remember the keywords of the room&hellip;docker&hellip;we need to escape! If you didn&rsquo;t notice the keywords you still had a chance to find out thanks the random hostname, the .dockerenv and the 3rd flag!</p>
+<p>Cool we know we are in a container and now what? I searched a lot and didn&rsquo;t find anything interesting. I decided to look around on the server and see if I found something peculiar&hellip;</p>
+
+  <img src="/img/dogcat/backup.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>What&rsquo;s that backup folder? Oh and there is a script in it? Bingo that&rsquo;s our way out! backup.sh is probably run periodically to do&hellip;backups things&hellip; Let&rsquo;s put a (bash this time) reverse shell in it and get out of the container!</p>
+
+  <img src="/img/dogcat/flag4.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We found the last flag! Our first CTF solved together! What an emotional moment&hellip;Now it&rsquo;s fork bomb time!</p>
+
+    </div>
+    
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

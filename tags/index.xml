@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on A flag with Somecookie</title>
+    
+    
+    
+    <link>/tags/</link>
+    <description>Recent content in Tags on A flag with Somecookie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2020 18:31:05 +0200</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CTF</title>
+      <link>/tags/ctf/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/ctf/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>/tags/docker/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/docker/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>lfi</title>
+      <link>/tags/lfi/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/lfi/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>medium</title>
+      <link>/tags/medium/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/medium/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>/tags/php/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/php/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>/tags/security/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/security/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>tryHackMe</title>
+      <link>/tags/tryhackme/</link>
+      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
+      
+      <guid>/tags/tryhackme/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>
