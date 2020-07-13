@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Blog :: A flag with Somecookie — CTF write-ups by Somecookie</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Hello friend! Long time no see. I&amp;rsquo;m back for some Try Hack Me challenge! This time I&amp;rsquo;m going to solve the challenge Blog. This is a medium room. Except for the privesc, this was not to difficult to solve. Still a fun room to do! Let&amp;rsquo;s go!
+What do we do first? NMAP! As always, let&amp;rsquo;s first scan the the ports with nmap
+Three services are running: ssh, webserver and samba."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/blog/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blog"/>
+<meta name="twitter:description" content="Blog - Billy Joel made a Wordpress blog!"/>
+
+
+
+<meta property="og:title" content="Blog" />
+<meta property="og:description" content="Blog - Billy Joel made a Wordpress blog!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/blog/" />
+<meta property="article:published_time" content="2020-07-13T17:08:40+02:00" />
+<meta property="article:modified_time" content="2020-07-13T17:08:40+02:00" /><meta property="og:site_name" content="A flag with Somecookie" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="/posts/blog/">Blog</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-07-13
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Somecookie</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/cve-2019-8943/">cve-2019-8943</a>&nbsp;
+        
+          #<a href="/tags/wordpress/">wordpress</a>&nbsp;
+        
+          #<a href="/tags/blog/">blog</a>&nbsp;
+        
+          #<a href="/tags/web/">web</a>&nbsp;
+        
+          #<a href="/tags/tryhackme/">tryHackMe</a>&nbsp;
+        
+          #<a href="/tags/ctf/">CTF</a>&nbsp;
+        
+          #<a href="/tags/medium/">medium</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/blog/blog.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      
+      <p>Hello friend! Long time no see. I&rsquo;m back for some <a href="https://tryhackme.com/">Try Hack Me</a> challenge! This time I&rsquo;m going to solve the challenge <a href="https://tryhackme.com/room/blog">Blog</a>. This is a medium room. Except for the privesc, this was not to difficult to solve. Still a fun room to do! Let&rsquo;s go!</p>
+<h2 id="what-do-we-do-first-nmap">What do we do first? NMAP!</h2>
+<p>As always, let&rsquo;s first scan the the ports with <code>nmap</code></p>
+
+  <img src="/img/blog/nmap.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Three services are running: <code>ssh</code>, <code>webserver</code> and <code>samba</code>. I&rsquo;ll let you go, on your own, deep down the rabbit hole that is samba and I will start with the webserver!</p>
+<h2 id="wordpress-5oups">Wordpress 5.oups</h2>
+<p>This is simply <code>Billy Joel's IT Blog</code> powered by <code>Wordpress 5.0</code>.</p>
+
+  <img src="/img/blog/wp-home.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Mmh 5.0 seems old&hellip;let&rsquo;s see if we find an exploit for it! For this we can use <code>searchsploit</code>.</p>
+
+  <img src="/img/blog/ssploit.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Bingo! We have at least two exploits at our disposal to gain access to the server! Let&rsquo;s start with the second one using <code>metasploit</code>!</p>
+<h3 id="metasploit-first-take">Metasploit first take</h3>
+<p>Let&rsquo;s search for it&hellip;wah 207 results! Way too much garbage results&hellip; The one we are looking for is the 95th!</p>
+
+  <img src="/img/blog/search.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Let&rsquo;s see the options we need to exploit the blog.</p>
+
+  <img src="/img/blog/metasploit1.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Oh&hellip;we need an username and a password&hellip;we have neither&hellip;it&rsquo;s time to go back to the blog to gather more information.</p>
+<h3 id="we-also-need-to-scan-the-blog">We also need to scan the blog??!</h3>
+<p>Since the blog uses Wordpress we can use <code>wpscan</code> to enumerate it. We find out two users!</p>
+
+  <img src="/img/blog/users.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>That&rsquo;s a good start but it is not enough. We still need a password. Let&rsquo;s invoke a mystical creature&hellip;<code>The Hydra of Lerna</code>!</p>
+<h3 id="brute-force-brute-force-brute-force">Brute-force, brute-force, brute-force</h3>
+<p>Let&rsquo;s start with Billy&rsquo;s mother&hellip;why? Glad you ask! Simply&hellip;because it may not work with Billy (I quit after 20 minutes). Before we use <code>hydra</code>, let&rsquo;s look at the login page.</p>
+
+  <img src="/img/blog/login.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>It&rsquo;s a classical wordpress login page. It even tells us that the user we will brute-force exists&hellip;how lovely! Let&rsquo;s capture the requests and run <code>hydra</code>.</p>
+
+  <img src="/img/blog/post.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>This is a <code>POST</code> request. We can grab the <code>request body</code> and use it with <code>hydra</code>!</p>
+
+  <img src="/img/blog/hydra.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Yeah a password!</p>
+<h3 id="metasploit-second-take">Metasploit second take</h3>
+
+  <img src="/img/blog/metasploit2.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>We got a shell! It&rsquo;s privEsc time!</p>
+<h2 id="little-detour">Little detour</h2>
+<p>Before we try to root the box, let&rsquo;s make a little detour that might be useful for another time!</p>
+<p>Let&rsquo;s imagine you already have gained access to the server with some reverse shell of any kind. You get this really annoying shell where you cannot make any mistake, you cannot use <code>CTRL+C</code> without breaking it, you don&rsquo;t get any auto-completion etc.</p>
+
+  <img src="/img/blog/shell1.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>If <code>python</code> is available, the first thing you want to do is to spawn a bash shell and then set the <code>TERM</code> environnement variable.</p>
+
+  <img src="/img/blog/shell2.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>This shell is already better, but now it is when the magic happens! Press <code>CTRL+Z</code>. This put the shell in the background and type the command <code>stty raw -echo;fg</code>. You get your shell back, but now you have a full interactive experience!</p>
+<h2 id="cute-little-peas">Cute little peas</h2>
+<p>We gained access, now we have to get better privileges. Let&rsquo;s upload <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/linPEAS/linpeas.sh">linpeas</a> to <code>/dev/shm</code> and run it! Since we have a <code>meterpreter</code> shell you can simply use the command <code>upload linpeas.sh</code> to do so. Let&rsquo;s run it! This will enumerate the server and point out the things that are odd.</p>
+<h3 id="loosing-patience-and-time">Loosing patience and time</h3>
+<p>At this point I spent a few hours to find out what was wrong with the server! First thing I did was to go to <code>/home/bjoel</code> to get the <code>user.txt</code> flag and maybe get some ssh keys.</p>
+
+  <img src="/img/blog/troll.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Mmeh I got trolled and no keys were there. Then I tried to look at the <code>cronjobs</code>, but again I couldn&rsquo;t exploit anything. Finally, I looked at the exploits for <code>Apache 2.4.29</code>. It seems that you there are some exploits to get <a href="https://medium.com/@knownsec404team/the-recurrence-of-apache-root-privilege-escalation-cve-2019-0211-1b02fcb31c37">root privilege escalation</a>. But again I couldn&rsquo;t exploit it&hellip;</p>
+<h2 id="back-to-the-peas">Back to the peas</h2>
+<p>In a last desperate attempt, I went back to linpeas. It was there in front of me this whole time&hellip;this weird binary with the <code>SUID</code> bit set.</p>
+
+  <img src="/img/blog/checker.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>I had never heard of this binary. I could not find any information about it on the internet and could not find it on my machine. I tried to run it to see what it does.</p>
+
+  <img src="/img/blog/checker2.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>YES I KNOW! That&rsquo;s exactly what I am trying to be!</p>
+<h2 id="nsa-super-cool-stuff">NSA super cool stuff</h2>
+<p>I still had no idea what was the purpose of this binary. Therefore, I decided to reverse engineer it using <a href="https://ghidra-sre.org/">Ghidra</a>. I know it is a bit overkilled, I could probably just have used <code>gdb</code>, but I wanted to apply the skills I learn with <a href="https://tryhackme.com/room/ccghidra">CC: Ghidra</a> and <a href="https://tryhackme.com/room/reverselfiles">Reversing ELF
+</a>.</p>
+
+  <img src="/img/blog/main.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Oh&hellip;it was much easier than expected. We simply need to set the environment variable <code>admin</code>.</p>
+
+  <img src="/img/blog/exploit.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<h2 id="get-the-flags">Get the flags</h2>
+<p>The root flag was at its expected location. However the <code>user</code> flag wasn&rsquo;t. Let&rsquo;s locate it using <code>find / -name &quot;user.txt&quot;</code>.</p>
+
+  <img src="/img/blog/flags.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px;"  />
+
+
+<p>Done!</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/dailybugle/">
+                  <span class="button__text">DailyBugle</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">A flag with Somecookie</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

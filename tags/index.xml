@@ -9,17 +9,137 @@
     <description>Recent content in Tags on A flag with Somecookie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 21:19:10 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 17:08:40 +0200</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>blog</title>
+      <link>/tags/blog/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/blog/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>CTF</title>
       <link>/tags/ctf/</link>
-      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
       
       <guid>/tags/ctf/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>cve-2019-8943</title>
+      <link>/tags/cve-2019-8943/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/cve-2019-8943/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>medium</title>
+      <link>/tags/medium/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/medium/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>tryHackMe</title>
+      <link>/tags/tryhackme/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/tryhackme/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>/tags/web/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/web/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>wordpress</title>
+      <link>/tags/wordpress/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/tags/wordpress/</guid>
       <description>
         
           
@@ -135,26 +255,6 @@
     </item>
     
     <item>
-      <title>tryHackMe</title>
-      <link>/tags/tryhackme/</link>
-      <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
-      
-      <guid>/tags/tryhackme/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          
-          
-        
-        </description>
-    </item>
-    
-    <item>
       <title>yum</title>
       <link>/tags/yum/</link>
       <pubDate>Wed, 10 Jun 2020 21:19:10 +0200</pubDate>
@@ -200,26 +300,6 @@
       <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
       
       <guid>/tags/lfi/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>medium</title>
-      <link>/tags/medium/</link>
-      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
-      
-      <guid>/tags/medium/</guid>
       <description>
         
           
