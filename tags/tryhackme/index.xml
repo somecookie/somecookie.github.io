@@ -9,10 +9,29 @@
     <description>Recent content in tryHackMe on A flag with Somecookie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 21:19:10 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 17:08:40 +0200</lastBuildDate>
     
 	<atom:link href="/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog</title>
+      <link>/posts/blog/</link>
+      <pubDate>Mon, 13 Jul 2020 17:08:40 +0200</pubDate>
+      
+      <guid>/posts/blog/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blog/blog.png&#34;/&gt;
+          
+        
+        
+        
+          Blog - Billy Joel made a Wordpress blog!
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>DailyBugle</title>

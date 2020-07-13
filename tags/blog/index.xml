@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>medium on A flag with Somecookie</title>
+    <title>blog on A flag with Somecookie</title>
     
     
     
-    <link>/tags/medium/</link>
-    <description>Recent content in medium on A flag with Somecookie</description>
+    <link>/tags/blog/</link>
+    <description>Recent content in blog on A flag with Somecookie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Jul 2020 17:08:40 +0200</lastBuildDate>
     
-	<atom:link href="/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,25 +28,6 @@
         
         
           Blog - Billy Joel made a Wordpress blog!
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Dogcat</title>
-      <link>/posts/dogcat/</link>
-      <pubDate>Wed, 10 Jun 2020 18:31:05 +0200</pubDate>
-      
-      <guid>/posts/dogcat/</guid>
-      <description>
-        
-          &lt;img src=&#34;/img/dogcat/banner.png&#34;/&gt;
-          
-        
-        
-        
-          Dogcat - I made a website where you can look at pictures of dogs and/or cats!
           
         
         </description>
